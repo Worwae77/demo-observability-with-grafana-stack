@@ -32,5 +32,5 @@ $docker compose logs --follow
 
 ### 3. Test and see result
 * Call api from service 1 => http://localhost:8080/demo/hi
-* Call api from service 1 => http://localhost:8081/target
+* Call api from service 1 => http://localhost:8082/target
 * Search tracing data from Grafana => http://localhost:3000/explore

@@ -19,7 +19,7 @@ services:
       context: ./agent
       dockerfile: Dockerfile_service2
     ports:
-      - "8081:8080"
+      - "8082:8080"
     environment:
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://tempo:4317
@@ -51,3 +51,17 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     ports:
       - "3000:3000"
+
+  prometheus:
+    image: prom/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
+
+volumes:
+  prom_data:
